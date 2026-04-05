@@ -43,7 +43,7 @@ char packetBuffer[255];
 volatile long leftCount = 0;
 volatile long rightCount = 0;
 
-// --- Function Prototypes for Interrupts ---
+//Function Prototypes for Interrupts
 void leftEncoderISR();
 void rightEncoderISR();
 
@@ -81,7 +81,7 @@ void setup() {
 }
 
 void loop() {
-  // 1. Check for incoming UDP commands
+  // Check for incoming UDP commands
   int packetSize = Udp.parsePacket();
   if (packetSize) {
     int len = Udp.read(packetBuffer, 255);
@@ -101,7 +101,7 @@ void loop() {
     }
   }
 
-  // 2. Handle Lidar and Motor Logic
+  // Handle Lidar and Motor Logic
   getLidarData(&Lidar);
 
   if (Lidar.receiveComplete) {
@@ -119,7 +119,7 @@ void loop() {
       stopMoving();
     }
 
-    // WiFi Reporting (Level 1 only)
+    // WiFi Reporting
     if (lidarEnabled && currentLevel == 1) {
       bool isReady = (Lidar.distance >= 90 && Lidar.distance <= 100);
       if (isReady && !wasReady) {
@@ -132,11 +132,11 @@ void loop() {
     }
   }
 
-  // 3. Ball Detection
+  // Ball Detection
   runSonars();
 }
 
-// --- Helper Functions ---
+// Helper Functions
 
 void getLidarData(TF* lidar) {
   static int i = 0;
@@ -206,7 +206,7 @@ void stopMoving() {
   mc.setSpeed(RIGHT_MOTOR, 0);
 }
 
-// --- Encoder ISRs ---
+// Encoder ISRs
 void leftEncoderISR() {
   bool a = digitalRead(LEFT_ENC_A);
   bool b = digitalRead(LEFT_ENC_B);

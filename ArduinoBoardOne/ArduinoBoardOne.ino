@@ -44,7 +44,7 @@ unsigned long lastTapTime = 0;
 unsigned long stateTimer = 0;
 int countdownStep = 0;
 
-// Timer Variables (From Updated Version)
+// Timer Variables
 unsigned long gameStartTime = 0;
 unsigned long pauseStartTime = 0;
 const unsigned long gameTimerLimit = 40000; // 20 seconds
@@ -237,7 +237,6 @@ void updateDisplay() {
   // Only update display if a second has passed or score changed
   if (timeLeftSeconds != lastDisplayedSeconds) {
    
-    // Clear screen for dramatic Big Numbers (3, 2, 1)
     if ((timeLeftSeconds == 3 && lastDisplayedSeconds > 3)) {
       tft.fillScreen(ILI9341_BLACK);
     }
@@ -252,7 +251,7 @@ void updateDisplay() {
       tft.print(timeLeftSeconds);
     }
     else {
-      // Timer HUD (Flicker Fix: setTextColor with Black background)
+      // Timer HUD
       tft.setCursor(10, 10);
       tft.setTextSize(3);
       tft.setTextColor(ILI9341_CYAN, ILI9341_BLACK);
@@ -302,11 +301,6 @@ void showInstructions() {
   tft.setCursor(10, 80);
   tft.println("HoopMaster!");
   tft.setTextSize(3);
-  // tft.setTextColor(ILI9341_BLUE);
-  // tft.println("\nInstructions:");
-  // tft.println("- Small Ball: 2pts");
-  // tft.println("- Med Ball: 3pts");
-  // tft.println("- Large Ball: 4pts");
   tft.setTextColor(ILI9341_BLUE);
   tft.println("\nStand in range to start!");
 }
