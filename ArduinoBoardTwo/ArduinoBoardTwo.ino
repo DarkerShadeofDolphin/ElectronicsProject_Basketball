@@ -180,7 +180,7 @@ float readDistance(int pin) {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  long duration = pulseIn(pin, HIGH, 15000);
+  long duration = pulseIn(pin, HIGH, 2500);
   return (duration == 0) ? TOTAL_DIST : (duration * 0.034) / 2;
 }
 
